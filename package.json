@@ -1,0 +1,9 @@
+{
+  "name": "roys-copa-2026",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:codes": "node generate-code-batch.mjs"
+  }
+}
+

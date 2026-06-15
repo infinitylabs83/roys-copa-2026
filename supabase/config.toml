@@ -1,0 +1,15 @@
+project_id = "roys-copa-2026"
+
+[api]
+enabled = true
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+enable_anonymous_sign_ins = true
+
+[functions.start-game]
+verify_jwt = true
+
+[functions.finish-game]
+verify_jwt = true

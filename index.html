@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0767b1">
+  <meta name="description" content="Roy's nos Acréscimos: jogo de habilidade da Copa Roy's.">
+  <title>Roy's nos Acréscimos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="brand-bar">
+      <img class="brand-logo" src="assets/logo-roys.png" alt="Roy's Sandwich Shop">
+      <span class="prototype-tag">MVP LOCAL</span>
+    </header>
+
+    <section class="screen intro-screen is-active" id="introScreen">
+      <div class="intro-visual">
+        <div class="score-burst">18</div>
+        <img src="assets/sub-steak.jpg" alt="Sub Roy's sendo servido">
+      </div>
+      <div class="intro-copy">
+        <p class="eyebrow">COPA ROY'S</p>
+        <h1>ROY'S NOS<br><span>ACRÉSCIMOS</span></h1>
+        <p class="lead">Monte o sub no tempo certo. São 18 ingredientes, três velocidades e dribles que começam no segundo tempo.</p>
+        <div class="rules-grid">
+          <div><strong>300</strong><span>pontos no centro perfeito</span></div>
+          <div><strong>2×</strong><span>nos três ingredientes finais</span></div>
+          <div><strong>7.000</strong><span>mínimo para disputar o prêmio</span></div>
+        </div>
+        <button class="primary-button" id="officialButton" type="button">ATIVAR PARTIDA OFICIAL</button>
+        <button class="secondary-button intro-secondary" id="trainingButton" type="button">JOGAR TREINO LIVRE</button>
+        <button class="text-link" id="rankingButton" type="button">Ver ranking e prêmios</button>
+        <p class="fine-print">No MVP real, cada código impresso é válido uma vez e somente no dia da compra.</p>
+      </div>
+    </section>
+
+    <section class="screen access-screen" id="accessScreen">
+      <div class="panel">
+        <p class="eyebrow">PARTIDA OFICIAL</p>
+        <h2>ATIVE SUA ENTRADA.</h2>
+        <p>O atendente entrega um código junto com a compra. Não é preciso digitar número da nota.</p>
+        <form id="accessForm">
+          <label>Como aparece no ranking
+            <input id="playerName" autocomplete="nickname" maxlength="18" placeholder="Ex.: Bia do Sub" required>
+          </label>
+          <label>WhatsApp
+            <input id="playerPhone" inputmode="tel" autocomplete="tel" placeholder="(21) 99999-9999" required>
+          </label>
+          <label>Código impresso
+            <input id="purchaseCode" autocomplete="one-time-code" autocapitalize="characters" maxlength="6" pattern="[A-HJ-NP-Z]{3}[0-9]{3}" placeholder="ABC123" required>
+          </label>
+          <p class="form-error" id="accessError" role="alert"></p>
+          <button class="primary-button" type="submit">VALIDAR E JOGAR</button>
+        </form>
+        <div class="demo-code"><span>Para testar localmente</span><strong>ROY123</strong><small>Também: COP202 ou GOL777</small></div>
+        <button class="text-link" id="backHomeButton" type="button">Voltar</button>
+      </div>
+    </section>
+
+    <section class="screen countdown-screen" id="countdownScreen" aria-live="assertive">
+      <p id="countdownLabel">PREPARA O TOQUE</p>
+      <strong id="countdownValue">3</strong>
+    </section>
+
+    <section class="screen game-screen" id="gameScreen">
+      <div class="game-hud">
+        <div class="hud-stat"><span>PONTOS</span><strong id="scoreValue">0000</strong></div>
+        <div class="round-pill"><span>INGREDIENTE</span><strong><b id="roundValue">1</b>/18</strong></div>
+        <div class="hud-stat hud-stat-right"><span>COMBO</span><strong id="comboValue">1×</strong></div>
+      </div>
+      <div class="level-row"><span id="levelName">AQUECIMENTO</span><span id="modeName">TREINO</span></div>
+      <div class="playfield" id="playfield">
+        <div class="field-markings"></div>
+        <div class="double-banner" id="doubleBanner">ACRÉSCIMOS: 2×</div>
+        <div class="ole-banner" id="oleBanner" aria-live="polite"></div>
+        <div class="hit-zone" id="hitZone"><span>CENTRO PERFEITO</span></div>
+        <div class="moving-ingredient" id="movingIngredient">
+          <span class="ingredient-shape"></span><b id="ingredientName">ALFACE</b>
+        </div>
+        <div class="feedback" id="feedback" aria-live="assertive"></div>
+        <div class="sub-builder" aria-label="Progresso da montagem">
+          <span class="build-layer bread-bottom is-built"></span>
+          <span class="build-layer layer-greens" data-layer="0"></span>
+          <span class="build-layer layer-tomato" data-layer="1"></span>
+          <span class="build-layer layer-cheese" data-layer="2"></span>
+          <span class="build-layer layer-steak" data-layer="3"></span>
+          <span class="build-layer layer-sauce" data-layer="4"></span>
+          <span class="build-layer bread-top" data-layer="5"></span>
+        </div>
+      </div>
+      <div class="timing-legend"><span>100 BOM</span><span>200 ÓTIMO</span><span>300 PERFEITO</span></div>
+      <button class="tap-button" id="tapButton" type="button"><span>ENCAIXAR AGORA</span><small>toque ou pressione espaço</small></button>
+    </section>
+
+    <section class="screen result-screen" id="resultScreen">
+      <div class="result-hero">
+        <p class="eyebrow" id="resultMode">RESULTADO</p>
+        <h2 id="resultTitle">APITO FINAL</h2>
+        <p id="resultSummary"></p>
+      </div>
+      <div class="result-card">
+        <div class="final-score"><span>PLACAR FINAL</span><strong id="finalScore">0</strong><small>/ 11.070</small></div>
+        <div class="result-stats">
+          <div><strong id="perfectCount">0</strong><span>perfeitos</span></div>
+          <div><strong id="bestCombo">1×</strong><span>melhor combo</span></div>
+          <div><strong id="accuracyValue">0%</strong><span>precisão</span></div>
+        </div>
+      </div>
+      <div class="eligibility-card" id="eligibilityCard">
+        <strong id="eligibilityTitle">TREINO CONCLUÍDO</strong>
+        <p id="eligibilityCopy"></p>
+      </div>
+      <div class="result-actions">
+        <button class="primary-button" id="showRankingButton" type="button">VER RANKING</button>
+        <button class="secondary-button" id="playAgainButton" type="button">VOLTAR AO INÍCIO</button>
+      </div>
+    </section>
+
+    <section class="screen ranking-screen" id="rankingScreen">
+      <div class="ranking-head">
+        <p class="eyebrow">PLACAR OFICIAL</p>
+        <h2>RANKING ROY'S.</h2>
+        <p>O ranking geral fica aberto até <strong>19 de julho de 2026</strong>.</p>
+      </div>
+      <div class="ranking-tabs">
+        <button class="is-active" data-ranking="daily">HOJE</button>
+        <button data-ranking="general">GERAL</button>
+      </div>
+      <ol class="ranking-list" id="rankingList"></ol>
+      <article class="prize-card">
+        <span>PRÊMIO DIÁRIO</span>
+        <h3>1 SUB SMART SELECIONADO</h3>
+        <p>Para o 1º lugar do dia com ao menos 7.000 pontos.</p>
+      </article>
+      <article class="prize-card prize-card--general">
+        <span>CAMPEÃO DA COPA</span>
+        <h3>1 SEMANA DE SUB GRÁTIS</h3>
+        <p>Um Sub Smart selecionado por dia, durante 7 dias, para o líder geral ao fim da campanha.</p>
+      </article>
+      <p class="legal-note">Regras, sabores elegíveis, desempate, prazo de retirada e CMV ainda dependem de aprovação final. Dados deste protótipo ficam apenas neste navegador.</p>
+      <button class="primary-button" id="rankingHomeButton" type="button">VOLTAR AO JOGO</button>
+    </section>
+  </main>
+  <script src="config.js"></script>
+  <script src="backend.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
