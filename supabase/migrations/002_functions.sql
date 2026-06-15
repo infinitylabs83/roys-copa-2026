@@ -31,11 +31,11 @@ begin
 
   if v_code.status='consumed' then
     select * into v_existing
-    from public.game_sessions
-    where code_id=v_code.id
-      and player_id=p_user_id
-      and status='active'
-      and expires_at>now();
+    from public.game_sessions sessions
+    where sessions.code_id=v_code.id
+      and sessions.player_id=p_user_id
+      and sessions.status='active'
+      and sessions.expires_at>now();
     if found then
       return query select
         v_existing.id,
