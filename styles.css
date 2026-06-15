@@ -768,9 +768,28 @@ h1 span { color: var(--red); }
 .panel input { width:100%; min-height:50px; margin-top:6px; padding:0 13px; border:2px solid #b7c0c7; border-radius:7px; background:#fff; font:700 16px Arial,sans-serif; text-transform:none; }
 .panel input:focus { border-color:var(--blue); outline:3px solid rgba(7,103,177,.2); }
 .form-error { min-height:18px; margin:0; color:var(--red); font:800 12px Arial,sans-serif; }
-.demo-code { margin:20px 0 5px; padding:14px; border:2px dashed var(--blue); text-align:center; }
-.demo-code span,.demo-code small { display:block; font:700 10px Arial,sans-serif; }
-.demo-code strong { display:block; margin:5px; color:var(--red); font-size:23px; letter-spacing:.08em; }
+.code-help {
+  margin:20px 0 5px;
+  padding:16px 17px;
+  border-left:5px solid var(--yellow);
+  background:#fff;
+  box-shadow:0 3px 0 rgba(0,0,0,.12);
+}
+.code-help strong {
+  display:block;
+  color:var(--blue);
+  font:900 15px Arial,sans-serif;
+  letter-spacing:.04em;
+}
+.code-help p {
+  margin:7px 0;
+  font:700 13px/1.4 Arial,sans-serif;
+}
+.code-help small {
+  display:block;
+  font:700 11px/1.35 Arial,sans-serif;
+}
+.code-help b { color:var(--red); letter-spacing:.08em; }
 .round-pill { min-width:90px; padding:7px 10px; border:2px solid rgba(255,255,255,.55); border-radius:99px; text-align:center; }
 .round-pill span { display:block; font:800 8px Arial,sans-serif; letter-spacing:.1em; }
 .round-pill strong { font-size:20px; }
