@@ -41,7 +41,7 @@ begin
   end if;
 
   if (select count(*) from public.code_attempts
-      where ip_hash=p_ip_hash and attempted_at>=v_since) >= 60 then
+      where ip_hash=p_ip_hash and attempted_at>=v_since) >= 300 then
     raise exception 'TOO_MANY_CODE_ATTEMPTS';
   end if;
 

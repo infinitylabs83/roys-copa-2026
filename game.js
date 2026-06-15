@@ -276,6 +276,8 @@
 
   async function validateAccess(event) {
     event.preventDefault();
+    const form = event.currentTarget;
+    const submitButton = form.querySelector('button[type="submit"]');
     const name = $("#playerName").value.trim();
     const phone = $("#playerPhone").value.replace(/\D/g, "");
     const code = $("#purchaseCode").value.trim().toUpperCase();
@@ -295,7 +297,9 @@
       el.accessError.textContent = "Este código já foi utilizado.";
       return;
     }
-    el.accessError.textContent = "Validando código...";
+    el.accessError.textContent = "Conectando e validando seu código...";
+    submitButton.disabled = true;
+    submitButton.textContent = "VALIDANDO...";
     try {
       const session = await window.RoysBackend.startGame({ code, nickname: name, phone });
       if (window.RoysBackend.localDemoEnabled) store.usedCodes[code] = { usedAt: Date.now(), phone };
@@ -307,6 +311,9 @@
       state.gameStartedAt = performance.now();
     } catch (error) {
       el.accessError.textContent = error.message || "Não foi possível validar o código.";
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "VALIDAR E JOGAR";
     }
   }
 

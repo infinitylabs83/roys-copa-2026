@@ -768,6 +768,12 @@ h1 span { color: var(--red); }
 .panel input { width:100%; min-height:50px; margin-top:6px; padding:0 13px; border:2px solid #b7c0c7; border-radius:7px; background:#fff; font:700 16px Arial,sans-serif; text-transform:none; }
 .panel input:focus { border-color:var(--blue); outline:3px solid rgba(7,103,177,.2); }
 .form-error { min-height:18px; margin:0; color:var(--red); font:800 12px Arial,sans-serif; }
+.panel button:disabled {
+  cursor:wait;
+  opacity:.72;
+  transform:none;
+  box-shadow:0 4px 0 #9f151a;
+}
 .code-help {
   margin:20px 0 5px;
   padding:16px 17px;
