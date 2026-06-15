@@ -46,7 +46,11 @@
     }
     if (!response.ok) {
       const code = String(data.error || "");
-      throw new Error(errorMessages[code] || "Não foi possível validar o código. Peça ajuda no caixa.");
+      const error = new Error(
+        errorMessages[code] || "Não foi possível validar o código. Peça ajuda no caixa."
+      );
+      error.code = code;
+      throw error;
     }
     return data;
   }
@@ -75,7 +79,7 @@
     return auth;
   }
 
-  async function invoke(name, payload) {
+  async function invoke(name, payload, canRefreshAuth = true) {
     const auth = await getAuth();
     const response = await fetchWithTimeout(`${config.SUPABASE_URL}/functions/v1/${name}`, {
       method: "POST",
@@ -86,7 +90,15 @@
       },
       body: JSON.stringify(payload)
     }, 1);
-    return readResponse(response);
+    try {
+      return await readResponse(response);
+    } catch (error) {
+      if (canRefreshAuth && error.code === "AUTH_REQUIRED") {
+        localStorage.removeItem(AUTH_KEY);
+        return invoke(name, payload, false);
+      }
+      throw error;
+    }
   }
 
   async function rest(path) {
