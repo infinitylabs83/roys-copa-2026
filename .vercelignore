@@ -1,0 +1,12 @@
+.git
+.vercel
+.env
+.env.*
+!.env.example
+codigos
+*.csv
+*.log
+generate-code-batch.mjs
+supabase
+APP-README.md
+
