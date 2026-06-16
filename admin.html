@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0767b1">
+  <title>Admin Copa Roy's 2026</title>
+  <link rel="stylesheet" href="admin.css?v=20260616-1">
+</head>
+<body>
+  <main class="admin-shell">
+    <section class="login-card" id="loginCard">
+      <img src="assets/logo-roys.png" alt="Roy's Sandwich Shop">
+      <p>Copa Roy's 2026</p>
+      <h1>Painel Admin</h1>
+      <form id="loginForm">
+        <label>Senha interna
+          <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Digite a senha do admin" required>
+        </label>
+        <button type="submit">ENTRAR NO PAINEL</button>
+        <small id="loginError" role="alert"></small>
+      </form>
+    </section>
+
+    <section class="dashboard is-hidden" id="dashboard">
+      <header class="admin-header">
+        <div>
+          <img src="assets/logo-roys.png" alt="Roy's Sandwich Shop">
+          <span>Admin Copa Roy's 2026</span>
+        </div>
+        <nav>
+          <label>Data
+            <input id="dateFilter" type="date">
+          </label>
+          <button id="refreshButton" type="button">Atualizar</button>
+          <button id="csvButton" type="button">Exportar CSV</button>
+          <button id="logoutButton" type="button">Sair</button>
+        </nav>
+      </header>
+
+      <section class="summary-grid" id="summaryGrid"></section>
+
+      <section class="insight-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Movimento Por Dia</h2>
+            <span>partidas e jogadores</span>
+          </div>
+          <div class="chart" id="dailyChart"></div>
+        </article>
+        <article class="panel winner-panel" id="winnerPanel"></article>
+      </section>
+
+      <section class="tabs" id="tabs">
+        <button class="is-active" data-tab="today">Hoje/Data</button>
+        <button data-tab="general">Ranking Geral</button>
+        <button data-tab="sessions">Partidas</button>
+        <button data-tab="loyal">Clientes Assíduos</button>
+        <button data-tab="suspicious">Suspeitas</button>
+        <button data-tab="codes">Códigos</button>
+      </section>
+
+      <section class="tab-panel is-active" id="tab-today">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Ranking Diário</h2>
+            <span id="dailySubtitle"></span>
+          </div>
+          <div class="table-wrap"><table id="dailyTable"></table></div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-general">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Ranking Geral</h2>
+            <span>acumulado da campanha</span>
+          </div>
+          <div class="table-wrap"><table id="generalTable"></table></div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-sessions">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Log De Partidas</h2>
+            <input id="sessionSearch" class="search" placeholder="Buscar nome, telefone ou código">
+          </div>
+          <div class="table-wrap"><table id="sessionsTable"></table></div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-loyal">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Clientes Assíduos</h2>
+            <span>frequência boa, não suspeita</span>
+          </div>
+          <div class="table-wrap"><table id="loyalTable"></table></div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-suspicious">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Possíveis Inconsistências</h2>
+            <span>revisar antes de premiar</span>
+          </div>
+          <div class="table-wrap"><table id="suspiciousTable"></table></div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-codes">
+        <div class="panel code-panel">
+          <div class="panel-head">
+            <h2>Códigos Disponíveis</h2>
+            <input id="codeSearch" class="search" placeholder="Lupa: buscar código não usado">
+          </div>
+          <div class="code-picker" id="availableCodes"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Códigos Usados</h2>
+            <span>com cliente e pontuação</span>
+          </div>
+          <div class="table-wrap"><table id="usedCodesTable"></table></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="config.js?v=20260615-3"></script>
+  <script src="admin.js?v=20260616-1"></script>
+</body>
+</html>

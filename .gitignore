@@ -8,6 +8,7 @@ codigos/
 *.log
 supabase/.branches
 supabase/.temp
+supabase/code-labels-update.sql
 
 
 .vercel
