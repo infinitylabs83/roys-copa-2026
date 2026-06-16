@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0767b1">
   <meta name="description" content="Roy's nos Acréscimos: jogo de habilidade da Copa Roy's.">
   <title>Roy's nos Acréscimos</title>
-  <link rel="stylesheet" href="styles.css?v=20260615-2">
+  <link rel="stylesheet" href="styles.css?v=20260615-3">
 </head>
 <body>
   <main class="app-shell">
@@ -27,7 +27,7 @@
         <div class="rules-grid">
           <div><strong>300</strong><span>pontos no centro perfeito</span></div>
           <div><strong>2×</strong><span>nos três ingredientes finais</span></div>
-          <div><strong>7.000</strong><span>mínimo para disputar o prêmio</span></div>
+          <div><strong>6.000</strong><span>mínimo para disputar o prêmio</span></div>
         </div>
         <button class="primary-button" id="officialButton" type="button">ATIVAR PARTIDA OFICIAL</button>
         <button class="secondary-button intro-secondary" id="trainingButton" type="button">JOGAR TREINO LIVRE</button>
@@ -46,7 +46,7 @@
             <input id="playerName" autocomplete="nickname" maxlength="18" placeholder="Ex.: Bia do Sub" required>
           </label>
           <label>WhatsApp
-            <input id="playerPhone" inputmode="tel" autocomplete="tel" placeholder="(21) 99999-9999" required>
+            <input id="playerPhone" inputmode="tel" autocomplete="tel" maxlength="15" placeholder="(21) 99999-9999" required>
           </label>
           <label>Código impresso
             <input id="purchaseCode" autocomplete="one-time-code" autocapitalize="characters" maxlength="6" pattern="[A-HJ-NP-Z]{3}[0-9]{3}" placeholder="ABC123" required>
@@ -136,7 +136,7 @@
       <article class="prize-card">
         <span>PRÊMIO DIÁRIO</span>
         <h3>1 SUB SMART SELECIONADO</h3>
-        <p>Para o 1º lugar do dia com ao menos 7.000 pontos.</p>
+        <p>Para o 1º lugar do dia com ao menos 6.000 pontos.</p>
       </article>
       <article class="prize-card prize-card--general">
         <span>CAMPEÃO DA COPA</span>
@@ -147,8 +147,8 @@
       <button class="primary-button" id="rankingHomeButton" type="button">VOLTAR AO JOGO</button>
     </section>
   </main>
-  <script src="config.js?v=20260615-2"></script>
-  <script src="backend.js?v=20260615-2"></script>
-  <script src="game.js?v=20260615-2"></script>
+  <script src="config.js?v=20260615-3"></script>
+  <script src="backend.js?v=20260615-3"></script>
+  <script src="game.js?v=20260615-3"></script>
 </body>
 </html>

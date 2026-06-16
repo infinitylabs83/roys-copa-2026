@@ -36,5 +36,5 @@ SUPABASE_SERVICE_ROLE_KEY
 
 ## Producao
 
-Hospedar em `https://copa.roys.com.br`. Nao imprimir QR ou codigos antes de
+Hospedar em `https://roys-copa-2026.vercel.app`. Nao imprimir QR ou codigos antes de
 validar esse endereco no celular e executar o checklist de homologacao.

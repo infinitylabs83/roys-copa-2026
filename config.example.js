@@ -4,6 +4,5 @@ window.ROYS_CONFIG = {
   CAMPAIGN_SLUG: "copa-roys-2026",
   START_GAME_FUNCTION: "start-game",
   FINISH_GAME_FUNCTION: "finish-game",
-  PUBLIC_URL: "https://copa.roys.com.br"
+  PUBLIC_URL: "https://roys-copa-2026.vercel.app"
 };
-

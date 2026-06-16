@@ -185,7 +185,7 @@ begin
 
   perform public.refresh_public_leaderboard(v_session.campaign_id,v_day);
 
-  return jsonb_build_object('accepted',true,'score',p_score,'eligible_daily',p_score>=7000);
+  return jsonb_build_object('accepted',true,'score',p_score,'eligible_daily',p_score>=6000);
 end $$;
 
 revoke all on function public.finalize_game(uuid,integer,smallint,numeric,numeric,text,jsonb,integer,jsonb)

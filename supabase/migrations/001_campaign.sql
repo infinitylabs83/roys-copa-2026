@@ -11,7 +11,7 @@ create table public.campaigns (
   starts_at timestamptz not null,
   ends_at timestamptz not null,
   timezone text not null default 'America/Sao_Paulo',
-  minimum_daily_score integer not null default 7000,
+  minimum_daily_score integer not null default 6000,
   maximum_score integer not null default 11070,
   active boolean not null default true,
   created_at timestamptz not null default now()

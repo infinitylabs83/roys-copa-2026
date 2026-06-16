@@ -3,7 +3,7 @@
 
   const STORAGE_KEY = "roys-acrescimos-mvp-v3";
   const TOTAL_ROUNDS = 18;
-  const MINIMUM_SCORE = 7000;
+  const MINIMUM_SCORE = 6000;
   const MAX_SCORE = 11070;
   const VALID_CODES = window.ROYS_CONFIG?.LOCAL_DEMO_CODES || [];
   const ingredients = [
@@ -45,6 +45,19 @@
 
   function today() {
     return new Intl.DateTimeFormat("en-CA", { timeZone: "America/Sao_Paulo" }).format(new Date());
+  }
+
+  function formatPhone(value) {
+    const digits = value.replace(/\D/g, "").slice(0, 11);
+    if (!digits) return "";
+    if (digits.length <= 2) return `(${digits}`;
+    if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+    if (digits.length <= 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+  }
+
+  function phoneDigits() {
+    return $("#playerPhone").value.replace(/\D/g, "");
   }
 
   function show(id) {
@@ -265,7 +278,7 @@
         el.eligibilityCopy.textContent = "Sua melhor pontuação de hoje entrou no ranking. O vencedor é apurado após o fechamento da loja.";
       } else {
         el.eligibilityTitle.textContent = `FALTARAM ${(MINIMUM_SCORE - state.score).toLocaleString("pt-BR")} PONTOS`;
-        el.eligibilityCopy.textContent = "O resultado foi registrado, mas o prêmio diário exige no mínimo 7.000 pontos.";
+        el.eligibilityCopy.textContent = "O resultado foi registrado, mas o prêmio diário exige no mínimo 6.000 pontos.";
       }
     } else {
       el.eligibilityTitle.textContent = "TREINO NÃO ENTRA NO RANKING";
@@ -279,10 +292,14 @@
     const form = event.currentTarget;
     const submitButton = form.querySelector('button[type="submit"]');
     const name = $("#playerName").value.trim();
-    const phone = $("#playerPhone").value.replace(/\D/g, "");
+    const phone = phoneDigits();
     const code = $("#purchaseCode").value.trim().toUpperCase();
-    if (name.length < 2 || phone.length < 10) {
-      el.accessError.textContent = "Preencha nome e WhatsApp válidos.";
+    if (name.length < 2) {
+      el.accessError.textContent = "Preencha seu nome para aparecer no ranking.";
+      return;
+    }
+    if (phone.length < 10 || phone.length > 11) {
+      el.accessError.textContent = "Preencha um WhatsApp válido com DDD.";
       return;
     }
     if (!window.RoysBackend.enabled && !window.RoysBackend.localDemoEnabled) {
@@ -374,6 +391,10 @@
   $("#trainingButton").addEventListener("click", () => start("training"));
   $("#backHomeButton").addEventListener("click", () => show("introScreen"));
   $("#accessForm").addEventListener("submit", validateAccess);
+  $("#playerPhone").addEventListener("input", event => {
+    event.target.value = formatPhone(event.target.value);
+    event.target.setSelectionRange(event.target.value.length, event.target.value.length);
+  });
   $("#tapButton").addEventListener("click", tap);
   el.field.addEventListener("pointerdown", tap);
   $("#playAgainButton").addEventListener("click", () => show("introScreen"));

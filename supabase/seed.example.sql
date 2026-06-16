@@ -10,7 +10,7 @@ insert into public.campaigns (
   '[INICIO_ISO_COM_FUSO]'::timestamptz,
   '[FIM_ISO_COM_FUSO]'::timestamptz,
   'America/Sao_Paulo',
-  7000,
+  6000,
   11070
 ) returning id;
 
